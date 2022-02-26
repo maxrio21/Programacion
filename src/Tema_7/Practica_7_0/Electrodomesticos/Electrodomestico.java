@@ -1,13 +1,9 @@
 package Tema_7.Practica_7_0.Electrodomesticos;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
 /*
  * 
  * @author Mario Bellido Jiménez
- * 
+ * comprobacion del push
  */
 
 public class Electrodomestico 
