@@ -9,10 +9,12 @@ package Tema_7.Practica_7_0.Electrodomesticos;
 public class Electrodomestico 
 {
 	private int precio = 100;
-	private String color = "Blanco";
+	private String color = ""; 
+	private final String COLOR_DEFECTO = "Blanco";
 	private char consumoEnergetico = 'F';
+	private final char CONSUMO_ENERGETICO_DEFECTO = 'F';
 	private int peso = 5;
-
+	
 	public Electrodomestico()
 	{
 
@@ -59,7 +61,7 @@ public class Electrodomestico
 			l.equals("E") ||
 			l.equals("F")) 
 		{
-			this.consumoEnergetico = l.charAt(0);
+			this.consumoEnergetico = CONSUMO_ENERGETICO_DEFECTO;
 		}
 		else 
 		{
@@ -78,15 +80,14 @@ public class Electrodomestico
 	
 	{
 		if(		
-				c.equalsIgnoreCase("Blanco") ||
-				c.equalsIgnoreCase("Negro") ||
-				c.equalsIgnoreCase("Rojo") ||
-				c.equalsIgnoreCase("Azul") ||
-				c.equalsIgnoreCase("Gris"))  
-			{
-				this.color = c;
-			}
-			else {this.color = "Blanco";}
+			c.equalsIgnoreCase("Blanco") || 
+			c.equalsIgnoreCase("Negro") ||
+			c.equalsIgnoreCase("Rojo") ||
+			c.equalsIgnoreCase("Azul") ||
+			c.equalsIgnoreCase("Gris")
+			)  
+		{this.color = c;}
+		else {this.color = COLOR_DEFECTO;}
 	}
 	
 	/*

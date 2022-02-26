@@ -2,12 +2,13 @@ package Tema_7.Practica_7_0.Electrodomesticos;
 
 public class Lavadora extends Electrodomestico 
 {
-	final int carga = 5;
+	private int carga = 0;
+	private final int CARGA_DEFECTO = 5;
 	
 	//Constuctor por defecto de la clase Lavadora 
 	public Lavadora()
 	{
-		
+
 	}
 	
 	/*
@@ -22,9 +23,10 @@ public class Lavadora extends Electrodomestico
 	 * Constructor que hereda el constructor de la clase Electrodomestico 
 	 * que añade los atributos precio, peso, consumoEnergetico y colors
 	 */
-	public Lavadora(int precio, String color, char consumoEnergetico, int peso)
+	public Lavadora(int carga, int precio, String color, char consumoEnergetico, int peso)
 	{
 		super(precio,color,consumoEnergetico,peso);
+		this.carga = carga;
 	}
 	
 	//Metodo get de carga
@@ -101,6 +103,6 @@ public class Lavadora extends Electrodomestico
 		precioCarga = (getCarga() > 30) ? (precioCarga = 50) : (precioCarga = 0);
 		
 		//@param Deveulve la suma de ambos parametros.
-		setPrecio(precioLetra + precioTamaño);
+		setPrecio(precioLetra + precioTamaño + precioCarga);
 	}
 }
