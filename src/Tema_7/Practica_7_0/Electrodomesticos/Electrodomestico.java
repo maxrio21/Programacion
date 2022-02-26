@@ -3,12 +3,12 @@ package Tema_7.Practica_7_0.Electrodomesticos;
 /*
  * 
  * @author Mario Bellido Jiménez
- * comprobacion del push
+ * 
  */
 
 public class Electrodomestico 
 {
-	private int precioBase = 100;
+	private int precio = 100;
 	private String color = "Blanco";
 	private char consumoEnergetico = 'F';
 	private int peso = 5;
@@ -20,24 +20,24 @@ public class Electrodomestico
 	
 	public Electrodomestico(int precio, int peso)
 	{
-		this.precioBase = precio;
+		this.precio = precio;
 		this.peso = peso;
 	}
 	
 	public Electrodomestico(int precio, String color, char consumoEnergetico, int peso) 
 	{
-		this.precioBase = precio;
+		this.precio = precio;
 		this.peso = peso;
 		this.consumoEnergetico = consumoEnergetico;
 		this.peso = peso;
 	}
 	
-	public int getPrecioBase() {return this.precioBase;}
+	public int getPrecioBase() {return this.precio;}
 	public String getColor() {return this.color;}
 	public char getConsumo() {return this.consumoEnergetico;}
 	public int getPeso() {return this.peso;}
 	
-	public void setPrecioBase(int p) {this.precioBase = p;}
+	public void setPrecio(int p) {this.precio = p;}
 	public void setColor(String c) {this.color = c;}
 	public void setConsumo(char c) {this.consumoEnergetico = c;}
 	public void setPeso(int p) {this.peso = p;}
@@ -47,17 +47,17 @@ public class Electrodomestico
 	 * y si esta fuera del rango establece F por defecto.
 	 */
 	
-	private void comprobarConsumoEnergetico(char letra) 
+	public void comprobarConsumoEnergetico(char letra) 
 	{
 		
 		String l = Character.toString(letra);
 		if(		
-			l.equalsIgnoreCase("A") ||
-			l.equalsIgnoreCase("B") ||
-			l.equalsIgnoreCase("C") ||
-			l.equalsIgnoreCase("D") ||
-			l.equalsIgnoreCase("E") ||
-			l.equalsIgnoreCase("F")) 
+			l.equals("A") ||
+			l.equals("B") ||
+			l.equals("C") ||
+			l.equals("D") ||
+			l.equals("E") ||
+			l.equals("F")) 
 		{
 			this.consumoEnergetico = l.charAt(0);
 		}
@@ -68,24 +68,25 @@ public class Electrodomestico
 		}
 	}
 	
+	/*
+	 * Comrpueba el color del electrodomestico
+	 * y si el color introducido no es valido 
+	 * inserta el color por defecto.
+	 */
+	
 	public void comprobarColor(String c) 
 	
 	{
 		if(		
 				c.equalsIgnoreCase("Blanco") ||
-				c.equalsIgnoreCase("B") ||
-				c.equalsIgnoreCase("C") ||
-				c.equalsIgnoreCase("D") ||
-				c.equalsIgnoreCase("E") ||
-				c.equalsIgnoreCase("F")) 
+				c.equalsIgnoreCase("Negro") ||
+				c.equalsIgnoreCase("Rojo") ||
+				c.equalsIgnoreCase("Azul") ||
+				c.equalsIgnoreCase("Gris"))  
 			{
 				this.color = c;
 			}
-			else 
-			{
-				this.color = "Blanco";
-			}
-		
+			else {this.color = "Blanco";}
 	}
 	
 	/*
@@ -93,7 +94,7 @@ public class Electrodomestico
 	 * y devuelve tambien su precio.
 	 */
 	
-	public int precioFinal() 
+	public void precioFinal() 
 	{
 		int precioLetra = 0; //
 		int precioTamaño = 0;
@@ -156,6 +157,6 @@ public class Electrodomestico
 		}
 		
 		//@param Deveulve la suma de ambos parametros.
-		return precioLetra + precioTamaño;
+		this.setPrecio(precioLetra + precioTamaño);
 	}
 }
