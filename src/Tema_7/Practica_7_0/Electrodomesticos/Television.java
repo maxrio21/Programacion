@@ -33,10 +33,10 @@ public class Television extends Electrodomestico
 	}
 	
 	//Metodo getter del atributo resolucion.
-	public int resolucion() {return this.resolucion;}
+	public int getResolucion() {return this.resolucion;}
 	
 	//Metodo getter del atributo smartTV.
-	public boolean smartTV() {return this.smartTV;}
+	public boolean getSmartTV() {return this.smartTV;}
 	
 	//Override del metodo precioFinal de la clase heredada Electrodomestico.
 	@Override

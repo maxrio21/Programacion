@@ -35,7 +35,7 @@ public class Electrodomestico
 		this.comprobarColor(color);
 	}
 	
-	public int getPrecioBase() {return this.precio;}
+	public int getPrecio() {return this.precio;}
 	public String getColor() {return this.color;}
 	public char getConsumo() {return this.consumoEnergetico;}
 	public int getPeso() {return this.peso;}

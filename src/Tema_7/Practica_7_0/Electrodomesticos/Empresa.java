@@ -4,17 +4,88 @@ import javax.swing.JOptionPane;
 
 public class Empresa 
 {
+	
+	Empresa em = new Empresa();
+	
+	
 	public static void main(String[] args) 
 	{
+		int cantidad = Integer.parseInt(JOptionPane.showInputDialog("Introduce la cantidad de electrodomesticos"));
+		
 		/*
-		 * Creamos un array de 10 posiciones
-		 * de tipo Elecrodomestico que instanciaremos
-		 * más adelante.
+		 * Creamos un array de n posiciones definidas
+		 * por el usuario de tipo Elecrodomestico que 
+		 * instanciaremos más adelante.
 		 */
+		final Electrodomestico[] e = new Electrodomestico[cantidad];
 		
-		Electrodomestico[] e = new Electrodomestico[10];
-		
-		
+		ventaElectrodomestico(e);
+		mostrarResultados(e);
+	}
+	
+	/*
+	 * Este metodo nos mostrara información
+	 * sobre casa electrodomestico.
+	 */
+	public static void mostrarResultados(Electrodomestico[] e)
+	{
+		for(int i = 0;i < e.length;i++) 
+		{
+			if(e[i] instanceof Electrodomestico) 
+			{
+				JOptionPane.showMessageDialog(null,
+					"Electrodomestico nº " + (i+1) + "\n" + 
+					"------------------------" + "\n" + 
+					"Tipo: " + e[i].getClass().getSimpleName() + "\n" +
+					"Precio: " + e[i].getPrecio() + "\n" +
+					"Color: " + e[i].getColor() + "\n" +
+					"Consumo energetico: " + e[i].getConsumo() + "\n" +
+					"Peso: " + e[i].getPeso()
+				);
+			}
+			else if(e[i] instanceof Lavadora)
+			{
+				JOptionPane.showMessageDialog(null,
+						"Electrodomestico nº " + (i+1) + "\n" + 
+						"------------------------" + "\n" + 
+						"Tipo: " + e[i].getClass().getSimpleName() + "\n" +
+						"Precio: " + e[i].getPrecio() + "\n" +
+						"Color: " + e[i].getColor() + "\n" +
+						"Consumo energetico: " + e[i].getConsumo() + "\n" +
+						"Peso: " + e[i].getPeso() + "\n" +
+						"Carga: " + ((Lavadora) e[i]).getCarga()
+					);
+			}
+			else if(e[i] instanceof Television)
+			{
+				if(((Television) e[i]).getSmartTV()) 
+				{
+					JOptionPane.showMessageDialog(null,
+							"Electrodomestico nº " + (i+1) + "\n" +
+							"------------------------" + "\n" + 
+							"Tipo: " + e[i].getClass().getSimpleName() + "\n" +
+							"Precio: " + e[i].getPrecio() + "\n" +
+							"Color: " + e[i].getColor() + "\n" +
+							"Consumo energetico: " + e[i].getConsumo() + "\n" +
+							"Peso: " + e[i].getPeso() + "\n" + 
+							"Resolucion: " + ((Television) e[i]).getResolucion() + "\n" +
+							"SmartTV: Si");
+				} 
+				else 
+				{
+					JOptionPane.showMessageDialog(null,
+							"Electrodomestico nº " + (i+1) + "\n" +
+							"------------------------" + "\n" + 
+							"Tipo: " + e[i].getClass().getSimpleName() + "\n" +
+							"Precio: " + e[i].getPrecio() + "\n" +
+							"Color: " + e[i].getColor() + "\n" +
+							"Consumo energetico: " + e[i].getConsumo() + "\n" +
+							"Peso: " + e[i].getPeso() + "\n" + 
+							"Resolucion: " + ((Television) e[i]).getResolucion() + "\n" +
+							"SmartTV: No");
+				}
+			}
+		}	
 	}
 	
 	/*
@@ -22,7 +93,7 @@ public class Empresa
 	 * sobre el electrodomestico y además calcula
 	 * su precio.
 	 */
-	public void ventaElectrodomestico(Electrodomestico[] e)
+	public static void ventaElectrodomestico(Electrodomestico[] e)
 	{
 		/*
 		 * Este for itera por cada posicion del array
