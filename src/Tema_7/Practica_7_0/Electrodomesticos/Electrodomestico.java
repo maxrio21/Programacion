@@ -3,7 +3,7 @@ package Tema_7.Practica_7_0.Electrodomesticos;
 /*
  * 
  * @author Mario Bellido Jiménez
- * 
+ * Subido desde eclipse.
  */
 
 public class Electrodomestico 
