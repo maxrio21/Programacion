@@ -9,7 +9,7 @@ public class Inventario
 		boolean continuar = false;
 		
 		Slots[] s = new Slots[7];
-		Items i = null;
+		Inventario inv = new Inventario();
 		
 		while(!continuar) 
 		{
@@ -20,8 +20,6 @@ public class Inventario
 			 */
 			try 
 			{
-				
-				
 				/*
 				 * Este switch obtendrá los datos introducidos 
 				 * por el usuario y según el valor realizará
@@ -37,127 +35,17 @@ public class Inventario
 				))) 
 				{
 					//Salir de la interfaz
-					case 0: 
-						continuar = true;
-						break;
+					case 0: continuar = true; break;
 						
 					//Añadir al inventario
-					case 1: 
-
-						/*
-						 * Pide al usuario que diga 
-						 * el slot del 1 - 7 donde quiere
-						 * añadir el objeto.
-						 */
-						int slotNumber = Integer.parseInt(JOptionPane.showInputDialog("Escribe del 1 al 7 el slot a añadir objetos")) - 1;
-						
-						/*
-						 * Pide al usuario que escriba la
-						 * cantidad de objetos a introducir.
-						 */
-						int cantidad = Integer.parseInt(JOptionPane.showInputDialog("Escribe la cantidad de objetos a guardar."));
-						
-						
-						/*
-						 * Pide al usuario que inserte un item
-						 * que este dentro de la lista de items.
-						 */
-						String respuesta = JOptionPane.showInputDialog("Escribe el objeto a añadir");
-												
-						/*
-						 * El try comprueba que el objeto introducido esta 
-						 * dentro de la lista de enums y si no lo esta
-						 * el catch te dira que no se ha encontrado.
-						 */
-						try 
-						{
-							/*
-							 * Aqui creamos un nuevo slot y directamente comprobamos que el
-							 * item existe, si existe le añade la capacidad máxima de estos items 
-							 * que puedes tener, que hemos hecho que pida el constructor
-							 */
-							Items validItem = Items.valueOf(respuesta);
-							
-							s[slotNumber] = new Slots(validItem.getStack());
-						
-							
-
-							/*
-							 * Aqui comprobamos que la cantidad que queremos
-							 * añadir no sea superior a la que permite el objeto.
-							 */
-							
-							if(s[slotNumber].getCantidad() + cantidad <= s[slotNumber].getMaxCantidad()) 
-							{
-								if(cantidad <= s[slotNumber].getMaxCantidad())
-								{
-									s[slotNumber].setItem(validItem);
-									s[slotNumber].setCantidad(s[slotNumber].getCantidad() + cantidad);
-									
-									System.out.println("Se ha añadido " + cantidad + " de " + validItem + " a tu inventario");
-								}
-								else 
-								{
-									System.out.println("El stack es demasiado grande, no cabe.");
-								}
-							}
-							else 
-							{
-								System.out.println("La cantidad a añadir es superior al espacio que te queda.");
-							}
-						}
-						catch(IllegalArgumentException ex)
-						{
-							JOptionPane.showInputDialog("El item introducido esta mal escrito o no existe.");
-						}
-
-						break;
+					case 1: inv.addItem(s); break;
 						
 					//Eliminar del inventario
-					case 2: 
-						
-						/*
-						 * Pide al usuario que diga 
-						 * el slot del 1 - 7 donde quiere
-						 * añadir el objeto.
-						 */
-						int removeNumber = Integer.parseInt(JOptionPane.showInputDialog("Escribe el slot a borrar")) - 1;
-						
-						s[removeNumber] = null;
-						
-						break;
+					case 2: inv.removeItem(s); break;
 						
 					//Mostrar inventario
-					case 3:
+					case 3: inv.showInventory(s); break;
 					
-						String mensaje = "";
-						String tryItem = "";
-						String tryCantidad = "";
-						
-						for(int j = 0; j < s.length; j++) 
-						{
-						
-							try 
-							{
-								tryItem = s[j].getItem().toString();
-								tryCantidad = String.valueOf(s[j].getCantidad());
-							
-								mensaje = mensaje + "Slot " + (j + 1) + "\n" + "Item: " + tryItem + "\n" + "Cantidad: " + tryCantidad + "\n" + "" + "\n";
-
-							}
-							catch(NullPointerException e)
-							{
-								tryItem = "Vacio";
-								tryCantidad = "0";
-								
-								mensaje = mensaje + "Slot " + (j + 1) + ": Vacio\n" + "" + "\n";
-
-							}
-						}
-						
-						JOptionPane.showMessageDialog(null,mensaje);
-					
-						break;
 					//Opcion erronea.	
 					default:
 						JOptionPane.showMessageDialog(null, "Opcion inexistente, porfavor \nuse las opciones [0,1,2 y 3], gracias.");
@@ -169,5 +57,117 @@ public class Inventario
 				JOptionPane.showMessageDialog(null, "Formato numerico erroneo, porfavor \nuse las opciones [0,1,2 y 3], gracias.");
 			}			
 		}
+	}
+	
+	public void addItem(Slots[] s) 
+	{
+		/*
+		 * Pide al usuario que diga 
+		 * el slot del 1 - 7 donde quiere
+		 * añadir el objeto.
+		 */
+		int slotNumber = Integer.parseInt(JOptionPane.showInputDialog("Escribe del 1 al 7 el slot a añadir objetos")) - 1;
+		
+		/*
+		 * Pide al usuario que escriba la
+		 * cantidad de objetos a introducir.
+		 */
+		int cantidad = Integer.parseInt(JOptionPane.showInputDialog("Escribe la cantidad de objetos a guardar."));
+		
+		
+		/*
+		 * Pide al usuario que inserte un item
+		 * que este dentro de la lista de items.
+		 */
+		String respuesta = JOptionPane.showInputDialog("Escribe el objeto a añadir");
+								
+		/*
+		 * El try comprueba que el objeto introducido esta 
+		 * dentro de la lista de enums y si no lo esta
+		 * el catch te dira que no se ha encontrado.
+		 */
+		try 
+		{
+			/*
+			 * Aqui creamos un nuevo slot y directamente comprobamos que el
+			 * item existe, si existe le añade la capacidad máxima de estos items 
+			 * que puedes tener, que hemos hecho que pida el constructor
+			 */
+			Items validItem = Items.valueOf(respuesta);
+			
+			s[slotNumber] = new Slots(validItem.getStack());
+		
+			
+
+			/*
+			 * Aqui comprobamos que la cantidad que queremos
+			 * añadir no sea superior a la que permite el objeto.
+			 */
+			
+			if(s[slotNumber].getCantidad() + cantidad <= s[slotNumber].getMaxCantidad()) 
+			{
+				if(cantidad <= s[slotNumber].getMaxCantidad())
+				{
+					s[slotNumber].setItem(validItem);
+					s[slotNumber].setCantidad(s[slotNumber].getCantidad() + cantidad);
+					
+					System.out.println("Se ha añadido " + cantidad + " de " + validItem + " a tu inventario");
+				}
+				else 
+				{
+					System.out.println("El stack es demasiado grande, no cabe.");
+				}
+			}
+			else 
+			{
+				System.out.println("La cantidad a añadir es superior al espacio que te queda.");
+			}
+		}
+		catch(IllegalArgumentException ex)
+		{
+			JOptionPane.showInputDialog("El item introducido esta mal escrito o no existe.");
+		}
+	}
+	
+	public void removeItem(Slots[] s)
+	{
+		/*
+		 * Pide al usuario que diga 
+		 * el slot del 1 - 7 donde quiere
+		 * añadir el objeto.
+		 */
+		int removeNumber = Integer.parseInt(JOptionPane.showInputDialog("Escribe el slot a borrar")) - 1;
+		
+		s[removeNumber] = null;
+	}
+	
+	public void showInventory(Slots[] s)
+	{
+		String mensaje = "";
+		String tryItem = "";
+		String tryCantidad = "";
+		
+		for(int j = 0; j < s.length; j++) 
+		{
+		
+			try 
+			{
+				tryItem = s[j].getItem().toString();
+				tryCantidad = String.valueOf(s[j].getCantidad());
+			
+				mensaje = mensaje + "Slot " + (j + 1) + "\n" + "Item: " + tryItem + "\n" + "Cantidad: " + tryCantidad + "\n" + "" + "\n";
+
+			}
+			catch(NullPointerException e)
+			{
+				tryItem = "Vacio";
+				tryCantidad = "0";
+				
+				mensaje = mensaje + "Slot " + (j + 1) + ": Vacio\n" + "" + "\n";
+
+			}
+		}
+		
+		JOptionPane.showMessageDialog(null,mensaje);
 	}
 }

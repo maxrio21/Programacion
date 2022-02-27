@@ -1,6 +1,5 @@
 package Tema_7.Practica_7_0.Poligono;
 
-
 public class Punto 
 {
 	double x;

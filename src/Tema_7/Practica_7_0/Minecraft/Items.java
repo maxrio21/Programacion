@@ -20,6 +20,4 @@ public enum Items
 	
 	public int getStack() {return this.stack;}
 	public boolean isStackeable() {return this.stackeable;}
-
-	
 }
