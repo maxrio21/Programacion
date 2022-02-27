@@ -21,6 +21,7 @@ public class Empresa
 		
 		ventaElectrodomestico(e);
 		mostrarResultados(e);
+		calculoElectrodomesticos(e);
 	}
 	
 	/*
@@ -163,4 +164,45 @@ public class Empresa
 			e[i].precioFinal();
 		}
 	}
+	
+	/*
+	 * Este metodo calculará la suma de 
+	 * cada electrodomestico según su tipo
+	 * y en total.
+	 */
+	public static void calculoElectrodomesticos(Electrodomestico[] e)
+	{
+		int total = 0;
+		int electrodomesticos = 0;
+		int lavadoras = 0;
+		int televisiones = 0;
+		
+		for (int i = 0; i < e.length; i++)
+		{
+			if(e[i] instanceof Electrodomestico)
+			{
+				electrodomesticos = electrodomesticos + e[i].getPrecio();
+			} 
+			else if (e[i] instanceof Lavadora)
+			{
+				lavadoras = lavadoras + e[i].getPrecio();
+			}
+			else if (e[i] instanceof Television)
+			{
+				televisiones = televisiones + e[i].getPrecio();
+			}
+			
+			total = total + e[i].getPrecio();
+		}
+		
+		JOptionPane.showMessageDialog(null,
+			"Precio total: " + total + "\n" + 
+			"----------------------" + "\n" + 
+			"Electrodomesticos: " + electrodomesticos + "€\n" + 
+			"Lavadoras: " + lavadoras + "€\n" + 
+			"Televisiones: " + televisiones + "€\n"
+		);
+		
+	}
+	
 }
