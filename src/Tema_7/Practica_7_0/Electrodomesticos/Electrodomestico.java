@@ -30,8 +30,9 @@ public class Electrodomestico
 	{
 		this.precio = precio;
 		this.peso = peso;
-		this.consumoEnergetico = consumoEnergetico;
-		this.peso = peso;
+		
+		this.comprobarConsumoEnergetico(consumoEnergetico);
+		this.comprobarColor(color);
 	}
 	
 	public int getPrecioBase() {return this.precio;}
@@ -54,19 +55,19 @@ public class Electrodomestico
 		
 		String l = Character.toString(letra);
 		if(		
-			l.equals("A") ||
+			(l.equals("A") ||
 			l.equals("B") ||
 			l.equals("C") ||
 			l.equals("D") ||
 			l.equals("E") ||
-			l.equals("F")) 
+			l.equals("F")) && l.length() == 1) 
 		{
-			this.consumoEnergetico = CONSUMO_ENERGETICO_DEFECTO;
+			this.consumoEnergetico = letra;
 		}
 		else 
 		{
 			
-			this.consumoEnergetico = 'F';
+			this.consumoEnergetico = CONSUMO_ENERGETICO_DEFECTO;
 		}
 	}
 	
